@@ -1,8 +1,13 @@
+//
+// Super sensitive disco lights
+//
 
 #define RED_PIN 5
 #define GREEN_PIN 6
 #define BLUE_PIN 3
+
 boolean DEBUG = 0;
+
 // microphone sensitivity
 // lower values higher sensitivity to low sound volume
 // Good values between 3 to 10
@@ -50,12 +55,8 @@ void loop ()
     Serial.print(ledValue, DEC);
     Serial.println();
   }
-  //digitalWrite (rgbPin[ledPin], HIGH);
+  
   analogWrite (rgbPin[ledPin], ledValue);
   delay(3);
-  /*for (int i=0; i <= 250; i = i + 10){
-    analogWrite (rgbPin[ledPin], 250-i);
-    Serial.println (250-i, DEC);
-    }*/
   ledPin++;
 }
