@@ -13,8 +13,8 @@ boolean DEBUG = 0;
 // Good values between 3 to 10
 int sensitivity = 7; 
 
-int sensorPin = A0; // select the input pin for the potentiometer
-int rgbPin[] = {RED_PIN, GREEN_PIN, BLUE_PIN}; // led array
+int sensorPin = A0; // select the input pin for the microphone
+int rgbPin[] = {RED_PIN, GREEN_PIN, BLUE_PIN}; // led pins
 
 // Initialisations
 int sensorValue = 0; // variable to store the value coming from the sensor
@@ -40,9 +40,12 @@ void loop ()
   if (delta < sensitivity) delta = 0;
   ledValue = constrain(delta, 0, 255);
 
-  //ledPin = random(3);
+  // Init led color
   if (ledPin > 2) ledPin = 0;
-
+  
+  // Light the led 
+  analogWrite (rgbPin[ledPin], ledValue);
+  
   // Debugging
   if (DEBUG) {
     Serial.print("sensorValue: ");
@@ -56,7 +59,7 @@ void loop ()
     Serial.println();
   }
   
-  analogWrite (rgbPin[ledPin], ledValue);
+  // Delay and shift led color
   delay(3);
   ledPin++;
 }
